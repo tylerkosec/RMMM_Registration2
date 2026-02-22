@@ -34,7 +34,7 @@ const CONTACT_EMAIL = "info@rmminimoto.com";
 
 // Gmail compose fallback (works even if mailto handler is weird)
 const GMAIL_COMPOSE_URL =
-  "https://mail.google.com/mail/?view=cm&fs=1&to=info@rmminimoto.com&su=RMMM%20Inquiry&body=Name%3A%0AEvent%3A%0AQuestion%3A%0A";
+  "https://mail.google.com/mail/?view=cm&fs=1&to=@rmminimoto.com&su=RMMM%20Inquiry&body=Name%3A%0AEvent%3A%0AQuestion%3A%0A";
 
 const EVENTS = [
   {
@@ -324,7 +324,7 @@ export default function App() {
           {/* Single button: opens Gmail compose */}
           <a
             className="btn2 btn2--primary"
-            href="https://mail.google.com/mail/?view=cm&fs=1&to=info@rmminimoto.com&su=RMMM%20Inquiry&body=Name%3A%0AEvent%3A%0AQuestion%3A%0A"
+            href="https://mail.google.com/mail/?view=cm&fs=1&to=admin@rmminimoto.com&su=RMMM%20Inquiry&body=Name%3A%0AEvent%3A%0AQuestion%3A%0A"
             target="_blank"
             rel="noreferrer"
             style={{ marginTop: "1.25rem" }}
