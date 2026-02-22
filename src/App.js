@@ -1,3 +1,4 @@
+// src/App.js
 import React from "react";
 import {
   ChevronDown,
@@ -30,11 +31,10 @@ import s7 from "./assets/sponsors/s7.png";
 // --- CONFIGURATION ---
 const DUES_URL = "https://rmminimoto.redpodium.com/2026-annual-membership";
 const DONATION_URL = "https://rmminimoto.redpodium.com/donations-for-nationals";
-const CONTACT_EMAIL = "info@rmminimoto.com";
 
-// Gmail compose fallback (works even if mailto handler is weird)
+// Gmail compose (works for everyone)
 const GMAIL_COMPOSE_URL =
-  "https://mail.google.com/mail/?view=cm&fs=1&to=@rmminimoto.com&su=RMMM%20Inquiry&body=Name%3A%0AEvent%3A%0AQuestion%3A%0A";
+  "https://mail.google.com/mail/?view=cm&fs=1&to=admin@rmminimoto.com&su=RMMM%20Inquiry&body=Name%3A%0AEvent%3A%0AQuestion%3A%0A";
 
 const EVENTS = [
   {
@@ -58,7 +58,6 @@ const EVENTS = [
     kicker: "Round Three",
     title: "IMI Motorsports Park",
     meta: "July 21st • Dacono",
-    // NOTE: this is the URL you provided earlier; replace if Round 3 has a different link.
     url: "https://rmminimoto.redpodium.com/round-3-imi-motorsports-park-2026",
     trackSrc: imiTrack,
   },
@@ -82,7 +81,7 @@ const EVENTS = [
 
 const SPONSORS = [
   { src: s1, alt: "Sponsor 1" },
-  { src: s1_5, alt: "Sponsor 1.5" },
+  { src: s1_5, alt: "Sponsor 1.5", big: true },
   { src: s2, alt: "Sponsor 2" },
   { src: s3, alt: "Sponsor 3" },
   { src: s4, alt: "Sponsor 4" },
@@ -103,15 +102,6 @@ export default function App() {
     const slider = document.getElementById("reg-slider");
     if (!slider) return;
     slider.scrollBy({ left: dir * slider.clientWidth, behavior: "smooth" });
-  };
-
-  // Mailto that works even if anchor click gets weird:
-  const openEmail = () => {
-    const mailto =
-      "mailto:" +
-      CONTACT_EMAIL +
-      "?subject=RMMM%20Inquiry&body=Name%3A%0AEvent%3A%0AQuestion%3A%0A";
-    window.location.href = mailto;
   };
 
   return (
@@ -148,6 +138,7 @@ export default function App() {
           </div>
         </div>
       </header>
+
       {/* REGISTER (Swipe/Click Slider) */}
       <section className="reg2" id="register">
         <div className="reg2SliderWrap">
@@ -220,6 +211,7 @@ export default function App() {
           </button>
         </div>
       </section>
+
       {/* PRICING BAR */}
       <div className="priceBar" aria-label="Pricing bar">
         <div className="priceBarInner">
@@ -275,6 +267,7 @@ export default function App() {
           </div>
         </div>
       </div>
+
       {/* DONATIONS */}
       <div className="donation-section">
         <Trophy className="donation-bg-icon" />
@@ -302,6 +295,7 @@ export default function App() {
           </a>
         </div>
       </div>
+
       {/* SPONSORS */}
       <section className="sponsors-section">
         <div className="reg2Kicker">Our Partners</div>
@@ -309,22 +303,25 @@ export default function App() {
 
         <div className="sponsors-row">
           {SPONSORS.map((s, i) => (
-            <div key={i} className="sponsor-card">
+            <div
+              key={i}
+              className={`sponsor-card ${s.big ? "sponsor-card--big" : ""}`}
+            >
               <img className="sponsor-img" src={s.src} alt={s.alt} />
             </div>
           ))}
         </div>
       </section>
 
+      {/* CONTACT */}
       <section className="contactSection" id="contact">
         <div className="contactInner">
           <div className="reg2Kicker">Contact</div>
           <h2 style={{ margin: 0 }}>Questions? Email Us</h2>
 
-          {/* Single button: opens Gmail compose */}
           <a
             className="btn2 btn2--primary"
-            href="https://mail.google.com/mail/?view=cm&fs=1&to=admin@rmminimoto.com&su=RMMM%20Inquiry&body=Name%3A%0AEvent%3A%0AQuestion%3A%0A"
+            href={GMAIL_COMPOSE_URL}
             target="_blank"
             rel="noreferrer"
             style={{ marginTop: "1.25rem" }}
@@ -333,6 +330,7 @@ export default function App() {
           </a>
         </div>
       </section>
+
       {/* Sticky mobile CTA */}
       <div className="sticky2">
         <button
@@ -342,6 +340,7 @@ export default function App() {
           Register Now →
         </button>
       </div>
+
       {/* FOOTER */}
       <footer className="siteFooter">
         <a
